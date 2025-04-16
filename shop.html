@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style2.css">
+    <link rel="stylesheet" href="style3.css">
+    <link rel="stylesheet" href="style4.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="shop.css">
+    <script src="nh.js" defer></script>
+    <title>Watch Store</title>
+</head>
+<style>
+    /* Cart Button & Popup */
+    .cart {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+    }
+
+    #cart-button {
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 1.1rem;
+        border-radius: 5px;
+    }
+
+    #cart-button:hover {
+        background-color: #0056b3;
+    }
+
+    /* Cart Popup */
+    .cart-popup {
+        display: none;
+        position: fixed;
+        bottom: 70px;
+        right: 20px;
+        background-color: white;
+        border: 1px solid #ddd;
+        width: 250px;
+        padding: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+    }
+
+    .cart-popup h3 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+
+    .cart-popup ul {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 10px;
+    }
+
+    .cart-popup ul li {
+        margin-bottom: 10px;
+        font-size: 1rem;
+    }
+
+    #checkout-button {
+        background-color: #007BFF;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        font-size: 1.1rem;
+        cursor: pointer;
+        border-radius: 5px;
+        width: 100%;
+    }
+
+    #checkout-button:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+<body>
+    <!-- Navbar -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="about us.html">About Us</a></li>
+                <li><a href="contact us.html">Contact</a></li>
+            </ul>
+            <!-- Cart Button -->
+            <div class="cart">
+                <button id="cart-button">
+                    Cart (<span id="cart-count">0</span>)
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Shop Section -->
+    <section id="shop">
+        <h1>Our Watch Collection</h1>
+        <div class="product-grid">
+            <!-- Product 1 -->
+            <div class="product" data-id="1">
+                <img src="watch1.jpg" alt="Watch 1">
+                <h3>Elegant Timepiece</h3>
+                <p class="price">$199.99</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product" data-id="2">
+                <img src="watch2.jpg" alt="Watch 2">
+                <h3>Sporty Chronograph</h3>
+                <p class="price">$249.99</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product" data-id="3">
+                <img src="watch3.jpg" alt="Watch 3">
+                <h3>Classic Leather Strap</h3>
+                <p class="price">$179.99</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="product" data-id="4">
+                <img src="watch4.jpeg" alt="Watch 4">
+                <h3>Luxury Watch</h3>
+                <p class="price">$499.99</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+
+
+            <div class="product" data-id="5">
+                <img src="watch5.jpg" alt="Watch 5">
+                <h3>Minimal Watch</h3>
+                <p class="price">$799.99</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+
+            <div class="product" data-id="6">
+                <img src="watch6.webp" alt="Watch 6">
+                <h3>Automatic Watch</h3>
+                <p class="price">$999.99</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+
+            <div class="product" data-id="7">
+                <img src="watch7.webp" alt="Watch 7">
+                <h3>Mechanical Watch</h3>
+                <p class="price">$399.99</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+
+            <div class="product" data-id="8">
+                <img src="watch8.webp" alt="Watch 8">
+                <h3>Maritime Watch</h3>
+                <p class="price">$999.99</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Popup (Hidden initially) -->
+    <div id="cart-popup" class="cart-popup">
+        <h3>Cart Items</h3>
+        <ul id="cart-items-list">
+            <li>No items in cart.</li>
+        </ul>
+        <button id="checkout-button">Checkout</button>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Watch Shop | All Rights Reserved</p>
+    </footer>
+
+    <script>
+        // Initialize cart array
+        let cart = [];
+
+        // Function to update the cart popup and cart count
+        function updateCart() {
+            const cartCount = document.getElementById('cart-count');
+            const cartItemsList = document.getElementById('cart-items-list');
+            const cartPopup = document.getElementById('cart-popup');
+
+            // Update the cart count
+            cartCount.textContent = cart.length;
+
+            // Display cart items in the popup
+            cartItemsList.innerHTML = ''; // Clear current list
+            if (cart.length === 0) {
+                cartItemsList.innerHTML = '<li>No items in cart.</li>';
+            } else {
+                cart.forEach(item => {
+                    const li = document.createElement('li');
+                    li.textContent = `${item.name} - $${item.price}`;
+                    cartItemsList.appendChild(li);
+                });
+            }
+
+            // Show or hide the cart popup
+            cartPopup.style.display = cart.length > 0 ? 'block' : 'none';
+        }
+
+        // Add event listener for the "Add to Cart" buttons
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                // Get product details
+                const product = this.closest('.product');
+                const productName = product.querySelector('h3').textContent;
+                const productPrice = parseFloat(product.querySelector('.price').textContent.replace('$', ''));
+
+                // Add product to the cart
+                cart.push({ name: productName, price: productPrice });
+
+                // Update the cart
+                updateCart();
+            });
+        });
+
+        // Handle cart button click to show/hide the cart popup
+        document.getElementById('cart-button').addEventListener('click', function() {
+            const cartPopup = document.getElementById('cart-popup');
+            cartPopup.style.display = cartPopup.style.display === 'block' ? 'none' : 'block';
+        });
+
+        // Handle checkout button click to redirect to the payment page
+        document.getElementById('checkout-button').addEventListener('click', function() {
+            // Redirect to the payment page (payment.html)
+            window.location.href = 'payment.html'; // Change to your payment page URL
+        });
+
+        // Initialize cart display on page load
+        updateCart();
+    </script>
+</body>
+</html>

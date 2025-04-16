@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account</title>
+  <script>
+    function handleRegister(event) {
+      event.preventDefault(); // Prevent form submission
+      
+      // Get the form input values
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      // Retrieve existing users from localStorage
+      const users = JSON.parse(localStorage.getItem('users')) || [];
+
+      // Check if the username already exists
+      if (users.some(user => user.username === username)) {
+        alert("Username already exists. Please choose a different username.");
+        return;
+      }
+
+      // Create new user object
+      const newUser = { username, password };
+      users.push(newUser);
+
+      // Save the updated users array to localStorage
+      localStorage.setItem('users', JSON.stringify(users));
+
+      // Redirect to login page after successful registration
+      alert("Account created successfully! Please login.");
+      window.location.href = "login.html";  // Redirect to login page
+    }
+  </script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f4f4f4;
+}
+
+.welcome-container,
+.login-container,
+.register-container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  text-align: center;
+}
+
+h1, h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+  text-align: left;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0 15px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+a {
+  color: #007BFF;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+</style>
+<body>
+  <div class="register-container">
+    <h2>Create Account</h2>
+    <form id="registerForm" onsubmit="handleRegister(event)">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+
+      <button type="submit">Create Account</button>
+    </form>
+    <p>Already have an account? <a href="login.html">Login here</a></p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style2.css">
+    <link rel="stylesheet" href="style3.css">
+    <link rel="stylesheet" href="style4.css">
+    <title>About Us - WatchStore</title>
+
+</head>
+ <style>/* Global Reset for styling consistency */
+    *,
+    *::before,
+    *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Arial', sans-serif;
+        line-height: 1.6;
+    }
+    
+    /* About Section */
+    .about {
+        padding: 80px 20px;
+        background-color: #f4f4f4;
+        transition: background-color 0.3s ease;
+    }
+    
+    .about:hover {
+        background-color: #e0e0e0;
+    }
+    
+    /* Container for centering and controlling layout */
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+        text-align: center;
+    }
+    
+    .about h2 {
+        font-size: 3rem;
+        color: #333;
+        margin-bottom: 30px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        transition: color 0.3s ease;
+    }
+    
+    .about p {
+        font-size: 1.25rem;
+        color: #666;
+        margin-bottom: 40px;
+        line-height: 1.8;
+        transition: color 0.3s ease;
+    }
+    
+    .about:hover h2, .about:hover p {
+        color: #007BFF;
+    }
+    
+    /* About Info Section */
+    .about-info {
+        margin-bottom: 60px;
+        text-align: left;
+        padding: 0 20px;
+    }
+    
+    .about-info h3 {
+        font-size: 2.2rem;
+        color: #333;
+        margin-top: 30px;
+        margin-bottom: 15px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    
+    .about-info ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+    
+    .about-info ul li {
+        font-size: 1.15rem;
+        margin-bottom: 12px;
+        color: #555;
+        position: relative;
+        padding-left: 25px;
+        line-height: 1.6;
+    }
+    
+    .about-info ul li::before {
+        content: '\2022';
+        font-size: 1.5rem;
+        color: #007BFF;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+    
+    /* About Team Section */
+    .about-team {
+        padding: 40px 0;
+    }
+    
+    .about-team h3 {
+        font-size: 2.5rem;
+        color: #333;
+        margin-bottom: 30px;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+    
+    .team-members {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        flex-wrap: wrap;
+        padding: 20px;
+    }
+    
+    .team-member {
+        width: 270px;
+        text-align: center;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .team-member:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+    
+    .team-member img {
+        width: 100%;
+        height: 100%;
+        max-height: 220px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-top: 20px;
+        transition: transform 0.3s ease;
+    }
+    
+    .team-member:hover img {
+        transform: scale(1.05);
+    }
+    
+    .team-member h4 {
+        font-size: 1.4rem;
+        color: #333;
+        margin-top: 15px;
+        margin-bottom: 5px;
+    }
+    
+    .team-member p {
+        font-size: 1rem;
+        color: #777;
+    }
+    
+    /* Footer Section */
+    footer {
+        background-color: #333;
+        color: white;
+        text-align: center;
+        padding: 30px 20px;
+        position: relative;
+        bottom: 0;
+        width: 100%;
+        font-size: 1rem;
+        letter-spacing: 1px;
+        transition: background-color 0.3s ease;
+    }
+    
+    footer:hover {
+        background-color: #007BFF;
+    }
+    
+    /* Media Queries for Responsiveness */
+    @media screen and (max-width: 1024px) {
+        .about h2 {
+            font-size: 2.5rem;
+        }
+    
+        .about p {
+            font-size: 1.15rem;
+        }
+    
+        .about-info ul li {
+            font-size: 1rem;
+        }
+    
+        .team-members {
+            gap: 15px;
+        }
+    
+        .team-member {
+            width: 220px;
+        }
+    }
+    
+    @media screen and (max-width: 768px) {
+        .about {
+            padding: 60px 15px;
+        }
+    
+        .about h2 {
+            font-size: 2.2rem;
+        }
+    
+        .about p {
+            font-size: 1rem;
+        }
+    
+        .team-members {
+            flex-direction: column;
+            align-items: center;
+        }
+    
+        .team-member {
+            width: 300px;
+            margin-bottom: 30px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        .about h2 {
+            font-size: 1.8rem;
+        }
+    
+        .about p {
+            font-size: 0.9rem;
+        }
+    
+        .team-member {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+    }
+    
+    </style>
+<body>
+    <header>
+        <div class="logo">
+            <h1>WatchStore</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="about us.html">About</a></li>
+                <li><a href="contact us.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="about">
+        <div class="container">
+            <h2>About WatchStore</h2>
+            <p>Welcome to WatchStore, where time meets style. We offer a curated collection of watches that combine craftsmanship, precision, and elegance. Whether you're looking for a luxury watch, a durable sports model, or a classic timepiece, we have something for every occasion.</p>
+            
+            <div class="about-info">
+                <h3>Our Mission</h3>
+                <p>At WatchStore, our mission is simple: to provide you with the best quality watches at unbeatable prices. We believe that a watch is not just a tool to tell time; it's a statement of your personality and a symbol of your taste and style.</p>
+                
+                <h3>Our Values</h3>
+                <ul>
+                    <li><strong>Quality:</strong> We handpick only the finest watches from renowned brands.</li>
+                    <li><strong>Affordability:</strong> Get the best value without compromising on quality.</li>
+                    <li><strong>Customer Satisfaction:</strong> We aim to exceed your expectations at every turn.</li>
+                    <li><strong>Innovation:</strong> We keep up with the latest trends to ensure our collection stays relevant.</li>
+                </ul>
+            </div>
+
+            <div class="about-team">
+                <h3>Our Team</h3>
+                <p>Our team consists of watch enthusiasts who are passionate about timepieces. From sourcing high-quality materials to providing you with exceptional customer service, we're here to make your shopping experience unforgettable.</p>
+                
+                <div class="team-members">
+                    <div class="team-member">
+                        <img src="team1.webp" alt="Team Member 1">
+                        <h4>Ratan Tata</h4>
+                        <p>Founder & CEO</p>
+                    </div>
+                    <div class="team-member">
+                        <img src="team2.webp" alt="Team Member 2">
+                        <h4>Bill Gates</h4>
+                        <p>Head of Product Development</p>
+                    </div>
+                    <div class="team-member">
+                        <img src="team3.webp" alt="Team Member 3">
+                        <h4>Elon Musk</h4>
+                        <p>Customer Support Specialist</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 WatchStore. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
